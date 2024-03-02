@@ -3,7 +3,9 @@ def binary_search (elements: list, value: str) -> int :
     low = 0; high = len(elements) - 1
     
     while (low <= high) :
+        
         mid = (low + high) // 2
+        
         if (value < elements[value]) : high = mid - 1
         elif (x > elements[value]) : low = mid + 1
         else : return mid
