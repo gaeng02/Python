@@ -42,7 +42,8 @@ class Heap :
 def heap_sort (array: list) -> list : 
 
     heap = Heap(array)
-    array = heap.remove_keys()
+    sorted_array = heap.remove_keys()
+    array = sorted_array
 
     
 if (__name__ == "__main__") : 
