@@ -4,9 +4,19 @@ class Heap :
         self.n = len(array) - 1
         self._make_heap_()
 
+    def remove_keys (self) -> list :
+        sorted_array = []
+        for i in range (self.n, 0, -1) :
+            self.array[i], self.array[1] = self.array[1], self.array[i]
+            self.n -= 1
+            _sift_down_(1)
+            sorted_array.append(self.array[self.n + 1])
+
+        return sorted_array
+
     def _make_heap_ (self) :
         for index in range ((self.n // 2), 0, -1) :
-            self._sift_down_(index)
+            _sift_down_(index)
 
     def _sift_down_ (self, index: int) :
         parent = index
@@ -27,16 +37,6 @@ class Heap :
             else : found = True
 
         self.array[parent] = key
-
-    def remove_keys (self) -> list :
-        sorted_array = []
-        for i in range (self.n, 0, -1) :
-            self.array[i], self.array[1] = self.array[1], self.array[i]
-            self.n -= 1
-            self._sift_down_(1)
-            sorted_array.append(self.array[self.n + 1])
-
-        return sorted_array
                     
 
 def heap_sort (array: list) -> list : 
