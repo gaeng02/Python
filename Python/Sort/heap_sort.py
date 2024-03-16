@@ -3,8 +3,8 @@ def heapify (array: list) -> list :
 
 def heap_sort (array: list) -> list : 
 
-    heap = Heap(array)
-    array = heap.remove_keys()
+    n = len(array)
+    heapify(array, n) 
 
     
 if (__name__ == "__main__") : 
