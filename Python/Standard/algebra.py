@@ -1,4 +1,4 @@
-def Min (a: any, b: any) -> any :
+def Min (a: any, b: any, *[c: any]) -> any :
     if (a > b) return a
     return b
 
