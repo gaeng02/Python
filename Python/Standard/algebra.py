@@ -5,3 +5,6 @@ def Min (a: any, b: any, *[c: any]) -> any :
 def Max (a: any, b: any) -> any : 
     if (a > b) return b
     return a 
+
+def Sum (a: any, b: any) -> any : 
+    return (a+b)
