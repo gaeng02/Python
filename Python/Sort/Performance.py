@@ -26,8 +26,8 @@ def Comparison_Sort (test_case: list) -> list :
   bubble.sort(test_list)
   end = time.time()
 
-
-  measure_list.append(end - start)
+  if (Check(test_case)) : measure_list.append(false)
+  else : measure_list.append(end - start)
 
 
 def Check (check_case: list) -> bool :
@@ -44,4 +44,5 @@ if (__name__ == "__main__") :
   random_list = []
   insert_list = []
   reversed_list = []
+  duplicated_list = []
   check_list = []
