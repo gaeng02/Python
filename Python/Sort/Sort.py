@@ -3,20 +3,26 @@
 def bubble_sort (array: list) -> list : 
 
     n = len(array)
+    comparison, swap = 0, 0
     
     for i in range (n-1, 0, -1) :
         for j in range (i) :
+            comparison += 1
             if (array[j] > array[j+1]) :
+                swap += 1
                 array[j], array[j+1] = array[j+1], array[j]
                 
 
 def exchange_sort (array: list) -> list : 
 
     n = len(array)
+    comparison, swap = 0, 0
     
     for i in range (n) :
         for j in range (i+1, n) :
+            comparison += 1
             if (array[i] > array[j]) :
+                swap += 1
                 array[i], array[j] = array[j], array[i]
 
 
@@ -43,10 +49,13 @@ def heap_sort (array: list) -> list :
 def insertion_sort (array: list) -> list : 
 
     n = len(array)
+    comparison, swap = 0, 0
     
     for i in range (1, n) :
         for j in range (i, 0, -1) :
+            comparison += 1
             if (array[j-1] > array[j]) :
+                swap += 1
                 array[j-1], array[j] = array[j], array[j-1]
                 
             else : break
@@ -55,6 +64,7 @@ def insertion_sort (array: list) -> list :
 def merge_sort (array: list) -> list : 
 
     n = len(array)
+    comparison, swap = 0, 0
     
     if (n == 1) : return ;
 
@@ -62,11 +72,11 @@ def merge_sort (array: list) -> list :
     left = array[ : m]
     right = array[m : ]
 
-    merge_sort(left)
-    merge_sort(right)
-    merge(m, n-m, left, right, array)
+    comparison, swap = merge_sort(left)
+    comparison, swap = merge_sort(right)
+    merge(m, n-m, left, right, array, comparison, swap)
 
-def merge (l, r, left, right, array) :
+def merge (l, r, left, right, array,comparison: int, swap: int) :
 
     l, r = l - 1, r - 1
     i, j, k = 0, 0, 0
