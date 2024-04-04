@@ -12,6 +12,7 @@ def bubble_sort (array: list) -> list :
                 swap += 1
                 array[j], array[j+1] = array[j+1], array[j]
                 
+    return comparison, swap
 
 def exchange_sort (array: list) -> list : 
 
@@ -25,25 +26,46 @@ def exchange_sort (array: list) -> list :
                 swap += 1
                 array[i], array[j] = array[j], array[i]
 
+    return comparison, swap
 
-def heapify (array: list, index: int, size: int) -> list :
+
+def heapify (array: list, index: int, size: int, comparison: int, swap: int) -> list :
     largest = index
     left = 2 * index + 1
     right = 2 * index + 2
 
-    if ((size > left) and (array[left] > array[largest])) : largest = left
-    if ((size > right) and (array[right] > array[largest])) : largest = right
+    if ((size > left) and (array[left] > array[largest])) :
+        comparison += 1
+        largest = left
+        
+    if ((size > right) and (array[right] > array[largest])) :
+        comparison += 2
+        largest = right
+
+
     if (largest != index) :
+        swap += 1
         array[index], array[largest] = array[largest], array[index]
-        heapify(array, largest, size)    
+        comparison, swap = heapify(array, largest, size, comparison, swap)
+
+    return comparison, swap
     
 def heap_sort (array: list) -> list : 
 
     n = len(array)
-    for index in range (n//2 -1, -1, -1) : heapify(array, index, n)
+    comparison, swap = 0, 0
+    
+    for index in range (n//2 -1, -1, -1) :
+        a, b = heapify(array, index, n, comparison, swap)
+        comparison, swap = comparison + a, swap + b
+        
     for index in range (n-1, 0, -1) :
+        swap += 1
         array[0], array[index] = array[index], array[0]
-        heapify(array, 0, index)
+        a, b = heapify(array, 0, index, comparison, swap)
+        comparison, swap = comparison + a, swap + b
+
+    return comparison, swap
 
 
 def insertion_sort (array: list) -> list : 
@@ -60,6 +82,7 @@ def insertion_sort (array: list) -> list :
                 
             else : break
 
+    return comparison, swap
 
 def merge_sort (array: list) -> list : 
 
@@ -72,9 +95,13 @@ def merge_sort (array: list) -> list :
     left = array[ : m]
     right = array[m : ]
 
-    comparison, swap = merge_sort(left)
-    comparison, swap = merge_sort(right)
-    merge(m, n-m, left, right, array, comparison, swap)
+    a, b = merge_sort(left)
+    comparison, swap = comparison + a, swap + b
+    a, b = merge_sort(right)
+    comparison, swap = comparison + a, swap + b
+    comparison, swap = merge(m, n-m, left, right, array, comparison, swap)
+
+    return comparison, swap
 
 def merge (l, r, left, right, array,comparison: int, swap: int) :
 
@@ -99,7 +126,7 @@ def merge (l, r, left, right, array,comparison: int, swap: int) :
         array[k] = right[j]
         j += 1
         k += 1 
-
+    return 
 
 def quick_sort (array: list) -> list : 
 
@@ -123,3 +150,34 @@ def partition (array: list, low: int, high: int) -> int :
             array[i], array[j] = array[j], array[i]
     array[j], array[low] = array[low], array[j]
     return j
+
+
+def selection_sort (array: list) -> list : 
+
+    n = len(array)
+    
+    for i in range (n) :
+        min_index = i
+        
+        for j in range (i+1, n) :
+            if (array[min_index] > array[j]) :
+                min_index = j
+
+        array[i], array[min_index] = array[min_index], array[i]
+
+if (__name__ == "__main__") :
+
+    '''
+    bubble_sort
+    exchange_sort
+    heap_sort
+    insertion_sort
+    merge_sort
+    quick_sort
+    selection_sort
+    '''
+    array = [5, 4, 3, 2, 1]
+    a, b = heap_sort(array)
+    
+    print(array)
+    print(a, b)
