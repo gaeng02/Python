@@ -155,16 +155,21 @@ def partition (array: list, low: int, high: int) -> int :
 def selection_sort (array: list) -> list : 
 
     n = len(array)
+    comparison, swap = 0, 0
     
     for i in range (n) :
         min_index = i
-        
+
         for j in range (i+1, n) :
+            comparison += 1
             if (array[min_index] > array[j]) :
                 min_index = j
-
+                
+        swap += 1
         array[i], array[min_index] = array[min_index], array[i]
-
+        
+    return comparison, swap
+    
 if (__name__ == "__main__") :
 
     '''
