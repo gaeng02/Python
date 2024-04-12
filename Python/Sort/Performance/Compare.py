@@ -31,10 +31,10 @@ def Check (check_case: list) -> bool :
 if (__name__ == "__main__") :
     
     """
-    random_list = []
-    insert_list = []
-    reversed_list = []
-    duplicated_list = []
+    random_list = [1,3,5,2,4]
+    insert_list = [2,3,4,5,6,7,8,9,10, 1]
+    reversed_list = [9,8,7,6,5,4,3,2,1]
+    duplicated_list = [5,5,4,3,2,1,1,2,3,4,5]
     check_list = []
     """
 
