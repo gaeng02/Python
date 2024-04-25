@@ -1,10 +1,11 @@
 def factorial (n: int, array: list) -> int :
 
-    if (len(array) = (n + 1)) : return array[n]
-    
-    if (n <= 1) : factorial(n, array
+    if n <= 1 : return array[n]
+    else : 
     return n * factorial(n-1)
+
 
 if (__name__ == "__main__") : 
     n = int(input())
-    print(factorial(n, []))
+    array = [0, 1]
+    print(fibonacci(n, array))
